@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\SERVITEC-FENIX\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F96C4B35-FFF9-4926-A3ED-B04D66E743F5}|SERVITEC-FENIX.csproj|c:\\users\\natalia soazo\\desktop\\entorno .net\\servitec-fenix\\controllers\\accesocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F96C4B35-FFF9-4926-A3ED-B04D66E743F5}|SERVITEC-FENIX.csproj|solutionrelative:controllers\\accesocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F96C4B35-FFF9-4926-A3ED-B04D66E743F5}|SERVITEC-FENIX.csproj|c:\\users\\natalia soazo\\desktop\\entorno .net\\servitec-fenix\\controllers\\repositoriousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F96C4B35-FFF9-4926-A3ED-B04D66E743F5}|SERVITEC-FENIX.csproj|solutionrelative:controllers\\repositoriousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 164,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccesoController.cs",
+              "DocumentMoniker": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\SERVITEC-FENIX\\Controllers\\AccesoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccesoController.cs",
+              "ToolTip": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\SERVITEC-FENIX\\Controllers\\AccesoController.cs",
+              "RelativeToolTip": "Controllers\\AccesoController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAlwB0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T18:57:18.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RepositorioUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\SERVITEC-FENIX\\Controllers\\RepositorioUsuario.cs",
+              "RelativeDocumentMoniker": "Controllers\\RepositorioUsuario.cs",
+              "ToolTip": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\SERVITEC-FENIX\\Controllers\\RepositorioUsuario.cs",
+              "RelativeToolTip": "Controllers\\RepositorioUsuario.cs",
+              "ViewState": "AQIAAEEAAAAAAAAAAAAIwEQAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T18:57:26.068Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
