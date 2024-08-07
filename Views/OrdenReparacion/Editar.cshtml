@@ -1,0 +1,114 @@
+﻿@model OrdenReparacion
+@{
+    ViewData["Title"] = "Editar";
+    int id = Model == null? 0: Model.Id;
+}
+<div class="row">
+     <div class="container justify-content-left btn-group-vertical col-2" aria-label="Basic example">
+        <div class="btn btn-warning"><a class="py-2 d-none d-md-inline-block" asp-controller="Cliente"
+            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR CLIENTE</a></div>
+    <div class="btn btn-success "><a class="py-2 d-none d-md-inline-block" asp-controller="Marca"
+            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR MARCA</a></div>
+    <div class="btn btn-info"><a class="py-2 d-none d-md-inline-block" asp-controller="Aparato"
+            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR APARATO</a></div>
+     </div>
+
+
+   <div class="container justify-content-center col-10">
+<h4>Orden de reparación</h4>
+<hr />
+    <div>
+       <form asp-action="Guardar" class="row g-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group col-6">
+                <label  class="control-label">CODIGO</label>
+                <input name="Id" class="form-control"  value="@id" readonly/>             
+            </div>
+            <div class="form-group col-4">
+                <label asp-for="FechaRecepcion" class="control-label"></label>
+                <input asp-for="FechaRecepcion " class="form-control" >
+                <span asp-validation-for="FechaRecepcion" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group col-4">
+                    <label asp-for="IdCliente" class="control-label"></label>
+                    <select class="form-control"  name="IdCliente" id="selectClientes" >
+                        @foreach (var item in (IList<Cliente>)ViewBag.Clientes)
+                        {
+                            @:<option @(item.Id == Model?.IdCliente ? "selected" : "") value="@item.Id">@item.Apellido @item.Nombre </option>
+                        }
+                    </select>
+            </div>
+            <div class="form-group  col-4">
+                <label asp-for="IdAparato" class="control-label"></label>
+                <select class="form-control"  name="IdAparato" id="selectAparatos"  >
+                    @foreach (var item in (IList<Aparato>)ViewBag.Aparatos)
+                    {
+                        @:<option @(item.Id == Model?.IdAparato ? "selected" : " ") value="@item.Id">@item.NombreA </option>
+                    }
+                </select>
+            </div>
+             <div class="form-group  col-4">
+                <label asp-for="IdMarca" class="control-label"></label>
+                <select class="form-control"  name="IdMarca" id="selectMarca">
+                    @foreach (var item in (IList<Marca>)ViewBag.Marcas)
+                    {
+                        @:<option @(item.Id == Model?.IdMarca ? "selected" : "") value="@item.Id">@item.NombreM </option>
+                    }
+                </select>
+            </div>
+             <div class="form-group">
+                <label asp-for="Falla" class="control-label"></label>
+                <input asp-for="Falla" class="form-control" />
+                <span asp-validation-for="Falla" class="text-danger"></span>
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="NroSerie" class="control-label"></label>
+                <input asp-for="NroSerie" class="form-control" />
+                <span asp-validation-for="NroSerie" class="text-danger"></span>
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="Valor" class="control-label"></label>
+                <input asp-for="Valor" class="form-control" />
+                <span asp-validation-for="Valor" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+        </div>
+
+    <a asp-action="Index">Volver al listado</a>
+</div>
+    </div>
+     @if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+</div>
+<script src="path/to/select2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#selectClientes').select2();
+});
+</script>
+<script>
+$(document).ready(function() {
+    $('#selectMarca').select2();
+});
+</script>
+<script>
+$(document).ready(function() {
+    $('#selectAparatos').select2();
+});
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+ 

@@ -1,0 +1,72 @@
+@model SERVITEC_FENIX.Models.Cliente;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="container justify-content-center bg-secondary col-6" >
+    <h4 class="text-center">Detalles del cliente</h4>
+    <hr />
+    <dl class="row ">
+        <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Apellido)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+         <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Domicilio)
+        </dt>
+        <dd class = "col-6">
+            @Html.DisplayFor(model => model.Domicilio)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Ciudad)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Ciudad)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd class = "col-6">
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt class = "col-6">
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+        <dd class = "col-6">
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+         <dt class = "col-6">
+            @Html.DisplayNameFor(model => model.Latitud)
+        </dt>
+        <dd class = "col-6">
+            @Html.DisplayFor(model => model.Latitud)
+        </dd>
+         <dt class = "col-6">
+            @Html.DisplayNameFor(model => model.Longitud)
+        </dt>
+        <dd class = "col-6">
+            @Html.DisplayFor(model => model.Longitud)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Volver al listado</a>
+</div>

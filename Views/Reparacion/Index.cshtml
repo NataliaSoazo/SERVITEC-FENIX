@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Reparacion>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div  class = "container justify-content-center  col-8" >
+    <h4> Listado de reparaciones</h4>
+
+<p>
+    <a asp-action="Editar"method = "post">CREAR NUEVA REPARACION</a>
+</p>
+<div >
+    <table class="table table-info">
+    <thead> 
+        <tr>
+            <th >
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdOrden)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.FechaReparacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Detalle)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.FechaEntrega)
+            </th>
+             
+             <th>
+               ACCIONES
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdOrden)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaReparacion )
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detalle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaEntrega)
+                </td>
+               
+                <td>
+                    <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary" style="font-size:25px;"></i></a>
+                    <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-success" style="font-size:25px;"></i></a>
+                    <a asp-action="Eliminar" asp-route-id=@item.Id><i class="fa fa-trash text-danger" style="font-size:25px;"></i></a>
+                  
+                  
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+</div>

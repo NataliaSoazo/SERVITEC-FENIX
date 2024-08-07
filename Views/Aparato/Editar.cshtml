@@ -1,0 +1,39 @@
+﻿@model Aparato
+@{
+    ViewData["Title"] = "Propietario";
+    int id = Model == null? 0: Model.Id;
+}
+
+
+<div class="container text-aligne-center">
+    <h4>Aparato</h4>
+</div>
+
+<hr/>
+<div class="row">
+    
+    <div class="col">
+        <form asp-action="Guardar" method="post" class="row g-3">
+             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group col-2">
+                <label  class="control-label">CODIGO</label>
+                <input name="Id" class="form-control"  value="@id" readonly/>             
+            </div>
+            <div class="form-group col-5">
+                <label asp-for="NombreA" class="control-label"></label>
+                <input asp-for="NombreA" class="form-control" />
+                <span asp-validation-for="NombreA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+    <a asp-action="Index">Volver al listado</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

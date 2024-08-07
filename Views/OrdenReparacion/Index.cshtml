@@ -1,0 +1,86 @@
+﻿@model IEnumerable<OrdenReparacion>
+
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<div  class = "container justify-content-center  col-8" >
+    <h4> Listado de órdenes de reparación</h4>
+
+<p>
+    <a  asp-action="Editar"method = "post">CREAR NUEVA ORDEN</a>
+</p>
+<div >
+    <table class="table table-info">
+    <thead> 
+        <tr>
+            <th >
+                REPARACION 
+            </th>
+            <th >
+                @Html.DisplayNameFor(model => model.Id) 
+            </th>
+             <th >
+                @Html.DisplayNameFor(model => model.CodigoReparacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRecepcion)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.DatosCliente.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatosCliente.Nombre)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Falla)
+            </th>
+             
+             <th>
+               ACCIONES
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            
+            <tr><td>
+                    <a target="_blank" asp-action="Editar" asp-controller="Reparacion" asp-route-id=@item.Id><i class="fa fa-plus text-success" style="font-size:25px;"></i></a>
+                  
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id ) 
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoReparacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaRecepcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatosCliente.Apellido )
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatosCliente.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Falla)
+                </td>
+               
+                <td>
+                    <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary" style="font-size:25px;"></i></a>
+                    <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-warning" style="font-size:25px;"></i></a>
+                    <a asp-action="Eliminar" asp-route-id=@item.Id><i class="fa fa-trash text-danger" style="font-size:25px;"></i></a>
+                  
+                  
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+</div>

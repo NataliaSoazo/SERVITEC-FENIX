@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Aparato>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div  class = "container justify-content-center  col-6" >
+    <h4> Listado de aparatos</h4>
+
+<p>
+    <a asp-action="Editar"method = "post">CREAR NUEVO APARATO</a>
+</p>
+<div >
+    <table class="table table-info">
+    <thead> 
+        <tr>
+            <th >
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreA)
+            </th>
+             <th>
+               ACCIONES
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreA)
+                </td>
+               
+                <td>
+                    <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary" style="font-size:25px;"></i></a>
+                    <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-success" style="font-size:25px;"></i></a>
+                    <a asp-action="Eliminar" asp-route-id=@item.Id><i class="fa fa-trash text-danger" style="font-size:25px;"></i></a>
+                  
+                  
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+</div>

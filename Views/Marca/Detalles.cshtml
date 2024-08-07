@@ -1,0 +1,30 @@
+@model SERVITEC_FENIX.Models.Marca;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="container justify-content-center bg-secondary col-6" >
+    <h4 class="text-center">Detalles de la marca</h4>
+    <hr />
+    <dl class="row ">
+        <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.NombreM)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.NombreM)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Volver al listado</a>
+</div>

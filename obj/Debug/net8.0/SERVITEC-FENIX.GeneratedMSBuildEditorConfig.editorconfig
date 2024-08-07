@@ -17,59 +17,123 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SERVITEC_FENIX
 build_property.RootNamespace = SERVITEC_FENIX
-build_property.ProjectDir = C:\Users\Natalia Soazo\Desktop\ENTORNO .NET\SERVITEC-FENIX\
+build_property.ProjectDir = C:\Users\Natalia\Documents\ENTORNO .NET\SERVITEC-FENIX\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Natalia Soazo\Desktop\ENTORNO .NET\SERVITEC-FENIX
+build_property.MSBuildProjectDirectory = C:\Users\Natalia\Documents\ENTORNO .NET\SERVITEC-FENIX
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Acceso/Index.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Acceso/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Cliente/Borrar.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Aparato/Borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcmF0b1xCb3JyYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Aparato/Detalles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcmF0b1xEZXRhbGxlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Aparato/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcmF0b1xFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Aparato/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcmF0b1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Cliente/Borrar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxCb3JyYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Cliente/Crear.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhci5jc2h0bWw=
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Cliente/Detalles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxEZXRhbGxlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Cliente/Editar.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Cliente/Editar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxFZGl0YXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Cliente/Index.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Cliente/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Home/Index.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Home/Privacy.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Shared/Error.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Marca/Borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FcQm9ycmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Marca/Detalles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FcRGV0YWxsZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Marca/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FcRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Marca/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/OrdenReparacion/Borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5SZXBhcmFjaW9uXEJvcnJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/OrdenReparacion/Detalles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5SZXBhcmFjaW9uXERldGFsbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/OrdenReparacion/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5SZXBhcmFjaW9uXEVkaXRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/OrdenReparacion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5SZXBhcmFjaW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Reparacion/Borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwYXJhY2lvblxCb3JyYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Reparacion/Detalles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwYXJhY2lvblxEZXRhbGxlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Reparacion/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwYXJhY2lvblxFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Reparacion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwYXJhY2lvblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/_ViewImports.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/_ViewStart.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Natalia Soazo/Desktop/ENTORNO .NET/SERVITEC-FENIX/Views/Shared/_Layout.cshtml]
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-6yjydswtpz

@@ -1,0 +1,66 @@
+@model OrdenReparacion
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="container justify-content-center bg-secondary col-6" >
+    <h4 class="text-center">Detalles de la marca</h4>
+    <hr />
+    <dl class="row ">
+        <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.CodigoReparacion)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.CodigoReparacion)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </dt>
+        <dd class = "col-6 ">
+            @Model.IdCliente,  @Model.DatosCliente.Nombre, @Model.DatosCliente.Apellido
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.IdAparato)
+        </dt>
+        <dd class = "col-6 ">
+            @Model.IdAparato,  @Model.DatosAparato.NombreA
+        </dd>
+         <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.IdMarca)
+        </dt>
+        <dd class = "col-6 ">
+             @Model.IdMarca  @Model.DatosMarca.NombreM
+        </dd>
+         <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Falla)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Falla)
+        </dd>
+         <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.NroSerie)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.NroSerie)
+        </dd>
+         <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Volver al listado</a>
+</div>

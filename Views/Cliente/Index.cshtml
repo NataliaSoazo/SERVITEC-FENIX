@@ -1,37 +1,62 @@
-﻿@model IEnumerable<SERVITEC_FENIX.Models.Cliente>
+﻿@model IEnumerable<Cliente>
+
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
+<h4> Lista de clientes</h4>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Editar"method = "post">CREAR NUEVO CLIENTE</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-info">
+    <thead> 
         <tr>
-            <th></th>
+            <th >
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+             <th>
+               ACCIONES
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                
+               
+                <td>
+                    <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary" style="font-size:25px;"></i></a>
+                    <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-success" style="font-size:25px;"></i></a>
+                    <a asp-action="Eliminar" asp-route-id=@item.Id><i class="fa fa-trash text-danger" style="font-size:25px;"></i></a>
+                  
+                  
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-</body>
-</html>
