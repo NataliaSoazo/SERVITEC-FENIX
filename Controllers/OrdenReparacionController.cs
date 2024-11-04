@@ -20,7 +20,24 @@ public class OrdenReparacionController : Controller
 
     public IActionResult Index()
 
-    {    var lista = rr.ObtenerOrdenReparaciones();
+    {    
+
+          RepositorioCliente repoCliente = new RepositorioCliente();
+            ViewBag.Clientes = repoCliente.ObtenerClientes();
+            RepositorioAparato repoAparato = new RepositorioAparato();
+            ViewBag.Aparatos = repoAparato.ObtenerAparatos();
+            RepositorioMarca repoMarca = new RepositorioMarca();
+            ViewBag.Marcas = repoMarca.ObtenerMarcas();
+
+        var lista = rr.ObtenerOrdenReparaciones();
+        if (TempData.ContainsKey("Mensaje"))
+            {
+                ViewBag.Mensaje = TempData["Mensaje"];
+            }
+            else if (TempData.ContainsKey("Error"))
+            {
+                ViewBag.Error = TempData["Error"];
+            }
 
         return View(lista);
     }

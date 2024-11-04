@@ -1,0 +1,92 @@
+@model Pago
+@{
+    ViewData["Title"] = "Pago";
+    int id = Model == null ? 0 : Model.Id;
+}
+
+
+<div class="container text-aligne-center">
+    <h4>Pago</h4>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-6">
+       <form asp-action="Guardar" class="row g-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="form-group col-3">
+                <label asp-for="Reparacion" class="control-label"></label>
+                <input asp-for="Reparacion" class="form-control" readonly value="@Model.Reparacion" />
+            </div>
+            <div class="form-group col-3">
+                <label asp-for="Fecha" class="control-label"></label>
+                @if(id > 0){
+                    <input asp-for="Fecha" class="form-control" readonly id="fecha"/>
+                } else {
+                    <input asp-for="Fecha" class="form-control" id="fecha"/>
+                }
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+          <div class="form-group col-5">
+                <label asp-for="Modo" class="control-label"></label>
+                <select class="form-control" name="Referencia" id= "">
+                    @foreach (var item in (List<string>)ViewBag.Referencia)
+                    {
+                        @:<option @(item== Model?.Modo ? "selected" : "") value="@item"> @item</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group col-3">
+                <label asp-for="Importe" class="control-label"></label>
+                @if (id > 0 ){
+                    <input asp-for="Importe" class="form-control" readonly>
+                } else {
+                    <input asp-for="Importe" class="form-control">
+                }
+                <span asp-validation-for="Importe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<a asp-action="Index">Volver al listado</a>
+</div>
+
+<script src="~/lib/select2/select2.min.js"></script>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function eliminar(id, nombre, apellido){
+            document.querySelector("#eliminar_id").value = id;
+            document.querySelector("#eliminar_nombre").innerHTML = nombre + " "+ apellido;
+            $("#eliminar").modal("show");
+        }
+    </script>
+    <script>
+    $(document).ready(function () {
+        $('#selectContratos').select2();
+    });
+</script>
+  <script>
+    // Obtener la fecha de hoy
+    const hoy = new Date();
+    // Formatear la fecha en el formato YYYY-MM-DD
+    const anio = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0'); // Sumar 1 porque getMonth() devuelve un índice de 0 a 11
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    const fechaFormateada = `${anio}-${mes}-${dia}`;
+
+    // Establecer la fecha en el campo de entrada
+    document.getElementById('fecha').value = fechaFormateada;
+   
+    
+</script>
+}

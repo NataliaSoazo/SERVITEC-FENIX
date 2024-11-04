@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JXHz5/i+4gxl+wFtbS2hsnH7aiAK5wMxhytRgrk+FHA=",
+  "Hash": "hDX6YoV70SIMSJyRlA/eMtAajs50SOyKwRgXnJDuTnc=",
   "Source": "SERVITEC-FENIX",
   "BasePath": "_content/SERVITEC-FENIX",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\servitec.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Natalia\\Documents\\ENTORNO .NET\\SERVITEC-FENIX\\wwwroot\\ImgSubidas\\6av_5.jfif",
+      "SourceId": "SERVITEC-FENIX",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Natalia\\Documents\\ENTORNO .NET\\SERVITEC-FENIX\\wwwroot\\",
+      "BasePath": "_content/SERVITEC-FENIX",
+      "RelativePath": "ImgSubidas/6av_5.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ImgSubidas\\6av_5.jfif"
     },
     {
       "Identity": "C:\\Users\\Natalia\\Documents\\ENTORNO .NET\\SERVITEC-FENIX\\wwwroot\\js\\site.js",

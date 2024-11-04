@@ -4,16 +4,6 @@
     int id = Model == null? 0: Model.Id;
 }
 <div class="row">
-     <div class="container justify-content-left btn-group-vertical col-2" aria-label="Basic example">
-        <div class="btn btn-warning"><a class="py-2 d-none d-md-inline-block" asp-controller="Cliente"
-            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR CLIENTE</a></div>
-    <div class="btn btn-success "><a class="py-2 d-none d-md-inline-block" asp-controller="Marca"
-            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR MARCA</a></div>
-    <div class="btn btn-info"><a class="py-2 d-none d-md-inline-block" asp-controller="Aparato"
-            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR APARATO</a></div>
-     </div>
-
-
    <div class="container justify-content-center col-10">
 <h4>Orden de reparación</h4>
 <hr />
@@ -26,7 +16,7 @@
             </div>
             <div class="form-group col-4">
                 <label asp-for="FechaRecepcion" class="control-label"></label>
-                <input asp-for="FechaRecepcion " class="form-control" >
+                <input asp-for="FechaRecepcion " class="form-control" id="fechaRecepcion">
                 <span asp-validation-for="FechaRecepcion" class="text-danger"></span>
             </div>
            
@@ -103,6 +93,19 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#selectAparatos').select2();
 });
+</script>
+<script>
+    // Obtener la fecha de hoy
+    const hoy = new Date();
+    // Formatear la fecha en el formato YYYY-MM-DD
+    const anio = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0'); // Sumar 1 porque getMonth() devuelve un índice de 0 a 11
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    const fechaFormateada = `${anio}-${mes}-${dia}`;
+
+    // Establecer la fecha en el campo de entrada
+    document.getElementById('fechaRecepcion').value = fechaFormateada;
+    
 </script>
 
 @section Scripts {

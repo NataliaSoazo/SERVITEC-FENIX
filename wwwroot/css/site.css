@@ -19,4 +19,25 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-image: url('../servitec.png');
+    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen */
+}
+#body{
+  background-color: rgb(240, 176, 97);
+}
+#miTabla{
+  font-size: larger;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+#detalles{
+  color: #525008;
+}
+#edi{
+  color: #1907db;
+}
+#eli{
+  color: #6b2404;
+}
+#configImg{
+  border-radius: 45%;
 }

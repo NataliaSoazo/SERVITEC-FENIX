@@ -18,6 +18,14 @@ namespace SERVITEC_FENIX.Controllers
         RepositorioAparato rp = new RepositorioAparato();
         var lista = rp.ObtenerAparatos();
         return View(lista);
+        if (TempData.ContainsKey("Mensaje"))
+            {
+                ViewBag.Mensaje = TempData["Mensaje"];
+            }
+            else if (TempData.ContainsKey("Error"))
+            {
+                ViewBag.Error = TempData["Error"];
+            }
     }
     public IActionResult Editar(int id)
     {

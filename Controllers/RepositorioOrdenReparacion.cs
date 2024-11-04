@@ -23,6 +23,7 @@ public class RepositorioOrdenReparacion
                 INNER JOIN clientes c ON i.{nameof(OrdenReparacion.IdCliente)} = c.{nameof(Cliente.Id)}
                 INNER JOIN aparatos a ON i.{nameof(OrdenReparacion.IdAparato)} = a.{nameof(Aparato.Id)}
                 INNER JOIN marcas m ON i.{nameof(OrdenReparacion.IdMarca)} = m.{nameof(Marca.Id)}
+                ORDER BY i.{nameof(OrdenReparacion.Id)} DESC
                 ";
             using (var command = new MySqlCommand(sql, connection))
             {
@@ -126,7 +127,7 @@ public class RepositorioOrdenReparacion
         using (var connection = new MySqlConnection(ConnectionString))
         {    string sql = $@"SELECT i.{nameof(OrdenReparacion.Id)}, {nameof(OrdenReparacion.CodigoReparacion)},
             {nameof(OrdenReparacion.FechaRecepcion)}, {nameof(OrdenReparacion.IdCliente)}, 
-            c.{nameof(Cliente.Nombre)}, c.{nameof(Cliente.Apellido)}, 
+            c.{nameof(Cliente.Nombre)}, c.{nameof(Cliente.Apellido)},
             {nameof(OrdenReparacion.IdAparato)}, a.{nameof(Aparato.NombreA)},
             {nameof(OrdenReparacion.IdMarca)}, m.{nameof(Marca.NombreM)},
             {nameof(OrdenReparacion.Falla)},{nameof(OrdenReparacion.NroSerie)}, 

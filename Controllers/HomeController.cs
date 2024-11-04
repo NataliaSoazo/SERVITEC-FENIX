@@ -12,21 +12,27 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-
+  
     public IActionResult Index()
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == "Rol")?.Value;
+        ViewBag.UserRole = userRole;
         return View();
     }
-    public IActionResult Cliente()
+
+    public IActionResult Privacy()
     {
         return View();
     }
-
-
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+     public IActionResult Loguin(string returnUrl){
+        return View();
+
     }
 }

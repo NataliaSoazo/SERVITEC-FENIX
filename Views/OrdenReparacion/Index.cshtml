@@ -5,23 +5,26 @@
     ViewData["Title"] = "Index";
 
 }
-
-<div  class = "container justify-content-center  col-8" >
+ <div class="btn"><a class="py-2 d-none d-md-inline-block" asp-controller="Cliente"
+            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR CLIENTE</a></div>
+ <div class="btn "><a class="py-2 d-none d-md-inline-block" asp-controller="Marca"
+            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR MARCA</a></div>
+    <div class="btn"><a class="py-2 d-none d-md-inline-block" asp-controller="Aparato"
+            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR APARATO</a></div>
+<div  class = "container justify-content-center  col" >
     <h4> Listado de órdenes de reparación</h4>
 
 <p>
-    <a  asp-action="Editar"method = "post">CREAR NUEVA ORDEN</a>
+     <a href="#"onclick="crearOrdenReparacion()" ><i class="fa fa-plus " title="crear Reparacion" style="font-size:25px";></i></a>
 </p>
 <div >
-    <table class="table table-info">
+    <table id="miTabla" class="table table-striped table-bordered">
     <thead> 
         <tr>
             <th >
                 REPARACION 
             </th>
-            <th >
-                @Html.DisplayNameFor(model => model.Id) 
-            </th>
+          
              <th >
                 @Html.DisplayNameFor(model => model.CodigoReparacion)
             </th>
@@ -47,12 +50,10 @@
         @foreach (var item in Model)
         {
             
-            <tr><td>
-                    <a target="_blank" asp-action="Editar" asp-controller="Reparacion" asp-route-id=@item.Id><i class="fa fa-plus text-success" style="font-size:25px;"></i></a>
-                  
-                </td>
+            <tr>
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.Id ) 
+                    <a href="#"onclick="crearReparacion('@item.CodigoReparacion')" ><i class="fa fa-plus " title="CREAR REPARACION" style="font-size:30px;"id="eli"></i></a>
                 </td>
               
                 <td>
@@ -74,9 +75,7 @@
                 <td>
                     <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary" style="font-size:25px;"></i></a>
                     <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-warning" style="font-size:25px;"></i></a>
-                    <a asp-action="Eliminar" asp-route-id=@item.Id><i class="fa fa-trash text-danger" style="font-size:25px;"></i></a>
-                  
-                  
+                    <a href="#"onclick="eliminar('@item.Id','@item.CodigoReparacion',  '@item.DatosCliente.Nombre',' @item.DatosCliente.Apellido ')" ><i class="fa fa-trash " title="eliminar" style="font-size:25px;"id="eli"></i></a>
                 </td>
             </tr>
         }
@@ -84,3 +83,226 @@
 </table>
 </div>
 </div>
+<form class="modal" tabindex="-1" asp-action="Eliminar" id="eliminar">
+    
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar la orden de  reparación de: </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="Id" value="" id ="eliminar_id">
+        <p><span id="eliminar_nombre"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" >Eliminar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+    </div>
+  </div>
+</div>
+</form>
+<-- formulario para crear--!>
+<form class="modal" tabindex="-1" asp-action="Guardar" id="crearOrdenReparacion">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Orden de Reparación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group col-12">
+            <label for="selectClientes">Cliente</label>
+            <select class="form-control" name="IdCliente" id="selectClientes">
+                @foreach (var cliente in ViewBag.Clientes)
+                {
+                    <option value="@cliente.Id">@cliente.Apellido @cliente.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-12">
+            <label for="selectAparatos">Aparato</label>
+            <select class="form-control" name="IdAparato" id="selectAparatos">
+                @foreach (var aparato in ViewBag.Aparatos)
+                {
+                    <option value="@aparato.Id">@aparato.NombreA</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-12">
+            <label for="selectMarca">Marca</label>
+            <select class="form-control" name="IdMarca" id="selectMarca">
+                @foreach (var marca in ViewBag.Marcas)
+                {
+                    <option value="@marca.Id">@marca.NombreM</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="falla">Falla</label>
+            <input name="Falla" class="form-control" type="textarea"/>
+        </div>
+
+        <div class="form-group col-6">
+            <label for="nroSerie">Nro Serie</label>
+            <input name="NroSerie" class="form-control" />
+        </div>
+
+        <div class="form-group col-6">
+            <label for="valor">Valor</label>
+            <input name="Valor" class="form-control" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+      </div>
+    </div>
+  </div>
+</form>
+<-- formulario para crear orden de reparacion--!>
+<form class="modal" tabindex="-1" asp-action="Guardar" id="crearOrdenReparacion">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Orden de Reparación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group col-12">
+            <label for="selectClientes">Cliente</label>
+            <select class="form-control" name="IdCliente" id="selectClientes">
+                @foreach (var cliente in ViewBag.Clientes)
+                {
+                    <option value="@cliente.Id">@cliente.Apellido @cliente.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-12">
+            <label for="selectAparatos">Aparato</label>
+            <select class="form-control" name="IdAparato" id="selectAparatos">
+                @foreach (var aparato in ViewBag.Aparatos)
+                {
+                    <option value="@aparato.Id">@aparato.NombreA</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-12">
+            <label for="selectMarca">Marca</label>
+            <select class="form-control" name="IdMarca" id="selectMarca">
+                @foreach (var marca in ViewBag.Marcas)
+                {
+                    <option value="@marca.Id">@marca.NombreM</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="falla">Falla</label>
+            <textarea name="Falla" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="form-group col-6">
+            <label for="nroSerie">Nro Serie</label>
+            <input name="NroSerie" class="form-control" />
+        </div>
+
+        <div class="form-group col-6">
+            <label for="valor">Valor</label>
+            <input name="Valor" class="form-control" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+      </div>
+    </div>
+  </div>
+</form>
+<-- crear reparacion--!>
+<div class="modal fade" id="crearReparacion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Agregar Reparación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Guardar" asp-controller="Reparacion" class="row g-3">
+                    <div class="text-danger">
+                        <!-- Aquí podrías incluir el resumen de validación -->
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label class="control-label">CODIGO DE REPARACION</label>
+                        <input  class="form-control" id="codigo" readonly name="Codigo"/>
+                    </div>
+                    <div class="form-group col-6">
+                        <label class="control-label">Fecha de Reparación</label>
+                        <input type="date" name="FechaReparacion" class="form-control" id="fechaReparacion"  />
+                        <span class="text-danger">
+                            <!-- Aquí podrías incluir la validación para FechaReparacion -->
+                        </span>
+                    </div>
+                    <div class="form-group col-12">
+                        <label class="control-label">Detalle</label>
+                        <input type="textBox" name="Detalle" class="form-control"  />
+                        <span class="text-danger">
+                            <!-- Aquí podrías incluir la validación para Detalle -->
+                        </span>
+                    </div>
+                    <div class="form-group col-6">
+                        <label class="control-label">Fecha de Entrega</label>
+                        <input type="date" name="FechaEntrega" id="fechaEntrega" class="form-control"  />
+                        <span class="text-danger">
+                            <!-- Aquí podrías incluir la validación para FechaEntrega -->
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        function eliminar(id, codigo, nombre, apellido){
+            document.querySelector("#eliminar_id").value = id;
+            document.querySelector("#eliminar_nombre").innerHTML =codigo + " " +" de "+ nombre + " "+ apellido;
+            $("#eliminar").modal("show");
+        }
+    </script>
+    
+    <script>
+        function crearOrdenReparacion(){
+            $("#crearOrdenReparacion").modal("show");
+        }
+    </script>
+    <script>
+        function crearReparacion(codigo){
+            document.querySelector("#codigo").value = codigo;
+            $("#crearReparacion").modal("show");
+        }
+    </script>
+    <script>
+    // Obtener la fecha de hoy
+    const hoy = new Date();
+    // Formatear la fecha en el formato YYYY-MM-DD
+    const anio = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0'); // Sumar 1 porque getMonth() devuelve un índice de 0 a 11
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    const fechaFormateada = `${anio}-${mes}-${dia}`;
+
+    // Establecer la fecha en el campo de entrada
+    document.getElementById('fechaReparacion').value = fechaFormateada;
+    document.getElementById('fechaEntrega').value = fechaFormateada;
+    
+</script>
+}

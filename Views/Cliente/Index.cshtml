@@ -10,12 +10,10 @@
 <p>
     <a asp-action="Editar"method = "post">CREAR NUEVO CLIENTE</a>
 </p>
-<table class="table table-info">
+<table id="miTabla" class="table table-striped table-bordered" >
     <thead> 
         <tr>
-            <th >
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -34,9 +32,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
@@ -52,7 +48,7 @@
                 <td>
                     <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary" style="font-size:25px;"></i></a>
                     <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-success" style="font-size:25px;"></i></a>
-                    <a asp-action="Eliminar" asp-route-id=@item.Id><i class="fa fa-trash text-danger" style="font-size:25px;"></i></a>
+                    <a href="#"onclick="eliminar('@item.Id', '@item.Nombre', '@item.Apellido')" ><i class="fa fa-trash " title="eliminar" style="font-size:25px;"id="eli"></i></a>
                   
                   
                 </td>
@@ -60,3 +56,30 @@
         }
     </tbody>
 </table>
+<form class="modal" tabindex="-1" asp-action="Eliminar" id="eliminar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="Id" value="" id ="eliminar_id">
+        <p><span id="eliminar_nombre"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" >Eliminar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+    </div>
+  </div>
+</div>
+</form>
+@section Scripts{
+    <script>
+        function eliminar(id, nombre, apellido){
+            document.querySelector("#eliminar_id").value = id;
+            document.querySelector("#eliminar_nombre").innerHTML = nombre + " "+ apellido;
+            $("#eliminar").modal("show");
+        }
+    </script>
+}

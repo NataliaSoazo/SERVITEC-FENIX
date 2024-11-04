@@ -20,7 +20,10 @@ public class ReparacionController : Controller
 
     public IActionResult Index()
 
-    {    var lista = rr.ObtenerReparaciones();
+    {   
+         List<string> Referencia = new List<string>{ "EFECTIVO","TRANSFERENCIA BANCARIA", "OTRO"};
+        ViewBag.Modo = Referencia;
+         var lista = rr.ObtenerReparaciones();
 
         return View(lista);
     }
@@ -37,6 +40,14 @@ public class ReparacionController : Controller
             {
                 var Reparacion = rr.ObtenerReparacion(id);
                 return View(Reparacion);
+                if (TempData.ContainsKey("Mensaje"))
+            {
+                ViewBag.Mensaje = TempData["Mensaje"];
+            }
+            else if (TempData.ContainsKey("Error"))
+            {
+                ViewBag.Error = TempData["Error"];
+            }
             }
             else
             {   
@@ -57,12 +68,9 @@ public class ReparacionController : Controller
 
     public ActionResult Guardar(Reparacion reparacion)
     {   
-        
-        Boolean validado = rr.validarReparacion(reparacion);
-        
-            if (validado == true)
-            {
-
+        try
+        {
+            
                 if (reparacion.Id > 0)
                 {
                     rr.ModificarReparacion(reparacion);
@@ -73,9 +81,15 @@ public class ReparacionController : Controller
                     rr.AltaReparacion(reparacion);
                     return RedirectToAction(nameof(Index));
                  
-            }else  ViewBag.Error = "La orden debe pertenecer al año en curso";
-                return View("Error");
-    
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+       
+            
+
 
     }
 

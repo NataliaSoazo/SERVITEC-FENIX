@@ -5,38 +5,33 @@
     
 }
 <div class="row">
-     <div class="container justify-content-left btn-group-vertical col-2" aria-label="Basic example">
-        <div class="btn btn-warning"><a class="py-2 d-none d-md-inline-block" asp-controller="Cliente"
-            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR CLIENTE</a></div>
-    <div class="btn btn-success "><a class="py-2 d-none d-md-inline-block" asp-controller="Marca"
-            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR MARCA</a></div>
-    <div class="btn btn-info"><a class="py-2 d-none d-md-inline-block" asp-controller="Aparato"
-            asp-action="Editar"><span class="lnr lnr-enter"></span> CREAR APARATO</a></div>
-     </div>
-
-
    <div class="container justify-content-center col-10">
-<h4>Reparación</h4>
-<hr />
+        <h4>Reparación</h4>
+        <hr />
     <div>
        <form asp-action="Guardar" class="row g-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group col-3">
-                <label  class="control-label">CODIGO</label>
-                <input name="Id" class="form-control"  value="@id" readonly/>             
+                 <label class="control-label">CODIGO</label>
+                    <input type="hidden" name="Id" value="@id" />
+                <span class="form-control-plaintext">@id</span> <!-- Muestra el valor en texto, si es necesario -->
             </div>
-            <div class="form-group  col-3">
-                <label asp-for="IdOrden" class="control-label"></label>
-                <select class="form-control"  name="IdOrden" >
-                    @foreach (var item in (IList<OrdenReparacion>)ViewBag.Ordenes)
-                    {
-                        @:<option @(item.Id == Model?.IdOrden ? "selected" : "") value="@item.Id " >@item.CodigoReparacion </option>
-                    }
-                </select>
+            <div class="form-group col-3">
+                <label asp-for="Codigo" class="control-label"></label>
+                 @if (id == 0) {
+                    <select class="form-control" name="Codigo">
+                     @foreach (var item in (IList<OrdenReparacion>)ViewBag.Ordenes)
+                     {
+                        <option value="@item.CodigoReparacion">@item.CodigoReparacion</option>
+                     }
+                    </select>
+                } else {
+                     <input type="text" class="form-control" name="Codigo" value="@Model.Codigo" readonly />
+                         }
             </div>
             <div class="form-group col-3">
                 <label asp-for="FechaReparacion" class="control-label"></label>
-                <input asp-for="FechaReparacion" class="form-control" />
+                <input asp-for="FechaReparacion" class="form-control" id="fechaReparacion" />
                 <span asp-validation-for="FechaReparacion" class="text-danger"></span>
             </div>
              <div class="form-group col-12">
@@ -46,17 +41,9 @@
             </div>
              <div class="form-group col-6">
                 <label asp-for="FechaEntrega" class="control-label"></label>
-                <input asp-for="FechaEntrega" class="form-control" />
+                <input asp-for="FechaEntrega" class="form-control"id="fechaEntrega" />
                 <span asp-validation-for="FechaEntrega" class="text-danger"></span>
             </div>
-            
-           
-            <div class="form-group col-6">
-                <label asp-for="Pago" class="control-label"></label>
-                <input asp-for="Pago" class="form-control" />
-                <span asp-validation-for="Pago" class="text-danger"></span>
-            </div>
-            
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
@@ -88,7 +75,20 @@ $(document).ready(function() {
     $('#selectAparatos').select2();
 });
 </script>
+<script>
+    // Obtener la fecha de hoy
+    const hoy = new Date();
+    // Formatear la fecha en el formato YYYY-MM-DD
+    const anio = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0'); // Sumar 1 porque getMonth() devuelve un índice de 0 a 11
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    const fechaFormateada = `${anio}-${mes}-${dia}`;
 
+    // Establecer la fecha en el campo de entrada
+    document.getElementById('fechaReparacion').value = fechaFormateada;
+     document.getElementById('fechaEntrega').value = fechaFormateada;
+    
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -1,0 +1,77 @@
+@model SERVITEC_FENIX.Models.Pago;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="container justify-content-center  col-6"  id ="table">
+    <h4 class="text-center">Detalles del Pago</h4>
+    <hr />
+     <dl class="row ">
+        <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Modo)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Modo)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Importe)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Importe)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Anulado)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Anulado)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Reparacion)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Reparacion)
+        </dd>
+         @if (ViewBag.UserRole == "ADMINISTRADOR")
+        {
+            <dt class="col-6">
+                CREADO POR
+            </dt>
+            <dd class="col-6">
+               @ViewBag.UsuarioC.Id @ViewBag.UsuarioC.Nombre @ViewBag.UsuarioC.Apellido
+            </dd>
+            @if ( Model.Anulado == "SI")
+            {
+                <dt class="col-6">
+                    ANULADO
+                </dt>
+                <dd class="col-6">
+                    SI
+                </dd>
+                <dt class="col-6">
+                    TERMINADO POR
+                </dt>
+                <dd class="col-6">
+                    @ViewBag.UsuarioT.Id @ViewBag.UsuarioT.Nombre @ViewBag.UsuarioT.Apellido
+                </dd>
+            }
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Volver al listado</a>
+</div>

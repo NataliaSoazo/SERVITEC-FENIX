@@ -1,4 +1,4 @@
-@model OrdenReparacion
+@model Reparacion
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 
 
 <div class="container justify-content-center bg-secondary col-6" >
-    <h4 class="text-center">Detalles de la marca</h4>
+    <h4 class="text-center">Detalles de la reparación</h4>
     <hr />
     <dl class="row ">
         <dt class = "col-6 " >
@@ -16,43 +16,30 @@
         <dd class = "col-6 ">
             @Html.DisplayFor(model => model.Id)
         </dd>
-        <dt class = "col-6 ">
-            @Html.DisplayNameFor(model => model.IdCliente)
+        <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.Codigo)
         </dt>
         <dd class = "col-6 ">
-            @Model.IdCliente,  @Model.DatosCliente.Nombre, @Model.DatosCliente.Apellido
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+         <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.FechaReparacion)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.FechaReparacion)
+        </dd>
+         <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Detalle)
         </dd>
         <dt class = "col-6 ">
-            @Html.DisplayNameFor(model => model.IdAparato)
+            Cliente
         </dt>
         <dd class = "col-6 ">
-            @Model.IdAparato,  @Model.DatosAparato.NombreA
+            @Model.DatosOrden.DatosCliente.Nombre,    @Model.DatosOrden.DatosCliente.Apellido,  @Model.DatosOrden.DatosCliente.Domicilio
         </dd>
-         <dt class = "col-6 ">
-            @Html.DisplayNameFor(model => model.IdMarca)
-        </dt>
-        <dd class = "col-6 ">
-             @Model.IdMarca  @Model.DatosMarca.NombreM
-        </dd>
-         <dt class = "col-6 ">
-            @Html.DisplayNameFor(model => model.Falla)
-        </dt>
-        <dd class = "col-6 ">
-            @Html.DisplayFor(model => model.Falla)
-        </dd>
-         <dt class = "col-6 ">
-            @Html.DisplayNameFor(model => model.NroSerie)
-        </dt>
-        <dd class = "col-6 ">
-            @Html.DisplayFor(model => model.NroSerie)
-        </dd>
-         <dt class = "col-6 ">
-            @Html.DisplayNameFor(model => model.Valor)
-        </dt>
-        <dd class = "col-6 ">
-            @Html.DisplayFor(model => model.Valor)
-        </dd>
-       
     </dl>
 </div>
 <div>

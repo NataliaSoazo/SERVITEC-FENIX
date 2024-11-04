@@ -6804,11 +6804,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Natalia\\Documents\\ENTORNO .NET\\SERVITEC-FENIX\\SERVITEC-FENIX.csproj",
+      "projectUniqueName": "c:\\Users\\Natalia\\Documents\\ENTORNO .NET\\SERVITEC-FENIX\\SERVITEC-FENIX.csproj",
       "projectName": "SERVITEC-FENIX",
-      "projectPath": "C:\\Users\\Natalia\\Documents\\ENTORNO .NET\\SERVITEC-FENIX\\SERVITEC-FENIX.csproj",
+      "projectPath": "c:\\Users\\Natalia\\Documents\\ENTORNO .NET\\SERVITEC-FENIX\\SERVITEC-FENIX.csproj",
       "packagesPath": "C:\\Users\\Natalia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Natalia\\Documents\\ENTORNO .NET\\SERVITEC-FENIX\\obj\\",
+      "outputPath": "c:\\Users\\Natalia\\Documents\\ENTORNO .NET\\SERVITEC-FENIX\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Natalia\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -6871,13 +6871,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: Host desconocido. (api.nuget.org:443)"
-    }
-  ]
+  }
 }

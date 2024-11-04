@@ -18,11 +18,19 @@ public class RepositorioReparacion
         var reparacion = new List<Reparacion>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            string sql = $@"SELECT i.{nameof(Reparacion.Id)}, i.{nameof(Reparacion.IdOrden)}, c.{nameof(Cliente.Nombre)}, c.{nameof(Cliente.Apellido)}, {nameof(Reparacion.FechaReparacion)}, {nameof(Reparacion.Detalle)},
-            {nameof(Reparacion.FechaEntrega)},{nameof(Reparacion.Pago)}
-                FROM reparaciones i 
-                INNER JOIN ordenesreparacion o ON i.{nameof(Reparacion.IdOrden)} = o.{nameof(OrdenReparacion.Id)}
+            string sql = $@"SELECT 
+            i.{nameof(Reparacion.Id)}, 
+            i.{nameof(Reparacion.Codigo)}, 
+            c.{nameof(Cliente.Nombre)}, 
+            c.{nameof(Cliente.Apellido)}, 
+            c.{nameof(Cliente.Domicilio)}, 
+            i.{nameof(Reparacion.FechaReparacion)}, 
+            i.{nameof(Reparacion.Detalle)},
+            i.{nameof(Reparacion.FechaEntrega)} 
+                FROM reparaciones i
+                INNER JOIN ordenesreparacion o ON i.{nameof(Reparacion.Codigo)} = o.{nameof(OrdenReparacion.CodigoReparacion)}
                 INNER JOIN clientes c ON o.{nameof(OrdenReparacion.IdCliente)} = c.{nameof(Cliente.Id)}
+                 ORDER BY i.{nameof(Reparacion.FechaReparacion)} DESC
                 ";
             using (var command = new MySqlCommand(sql, connection))
             {
@@ -34,22 +42,19 @@ public class RepositorioReparacion
                         reparacion.Add(new Reparacion
                         {
                             Id = reader.GetInt32(nameof(Reparacion.Id)),
-                            IdOrden = reader.GetInt32(nameof(Reparacion.IdOrden)),
-							
+							Codigo = reader.GetString(nameof(Reparacion.Codigo)),
                             DatosOrden = new OrdenReparacion
                             {   
                                 DatosCliente = new Cliente
                                 {
                                     Nombre = reader.GetString(nameof(Cliente.Nombre)),
                                     Apellido = reader.GetString (nameof(Cliente.Apellido)),
+                                    Domicilio = reader.GetString (nameof(Cliente.Domicilio)),
                                 }
                             },
                             FechaReparacion = reader.GetDateTime(nameof(Reparacion.FechaReparacion)),
 						    Detalle = reader.GetString(nameof(Reparacion.Detalle)),
                             FechaEntrega = reader.GetDateTime(nameof(Reparacion.FechaEntrega)),
-							Pago= reader.GetDouble(nameof(Reparacion.Pago)),
-                          
-                            
                         });
                      }
 
@@ -64,17 +69,17 @@ public class RepositorioReparacion
     public int AltaReparacion(Reparacion reparacion){
         int id = 0;
         using (var connection = new MySqlConnection(ConnectionString)){
-            string sql = $@"INSERT INTO reparaciones ({nameof(Reparacion.IdOrden)},  {nameof(Reparacion.FechaReparacion)},
-            {nameof(Reparacion.Detalle)},{nameof(Reparacion.FechaEntrega)}, {nameof(Reparacion.Pago)})
-                VALUES  (@{nameof(Reparacion.IdOrden)},  @{nameof(Reparacion.FechaReparacion)},
-            @{nameof(Reparacion.Detalle)}, @{nameof(Reparacion.FechaEntrega)}, @{nameof(Reparacion.Pago)});           
+            string sql = $@"INSERT INTO reparaciones ({nameof(Reparacion.Codigo)}, {nameof(Reparacion.FechaReparacion)},
+            {nameof(Reparacion.Detalle)}, {nameof(Reparacion.FechaEntrega)})
+                VALUES  (@{nameof(Reparacion.Codigo)},  @{nameof(Reparacion.FechaReparacion)},
+            @{nameof(Reparacion.Detalle)}, @{nameof(Reparacion.FechaEntrega)});           
                 SELECT LAST_INSERT_ID();";
             using (var command = new MySqlCommand(sql, connection)){
-                command.Parameters.AddWithValue($"@{nameof(Reparacion.IdOrden)}", reparacion.IdOrden);
+                
+                command.Parameters.AddWithValue($"@{nameof(Reparacion.Codigo)}", reparacion.Codigo);
                 command.Parameters.AddWithValue($"@{nameof(Reparacion.FechaReparacion)}", reparacion.FechaReparacion);
                 command.Parameters.AddWithValue($"@{nameof(Reparacion.Detalle)}", reparacion.Detalle);
                 command.Parameters.AddWithValue($"@{nameof(Reparacion.FechaEntrega)}", reparacion.FechaEntrega);
-                command.Parameters.AddWithValue($"@{nameof(Reparacion.Pago)}", reparacion.Pago);
                 
                 connection.Open();
                 id = Convert.ToInt32(command.ExecuteScalar());
@@ -89,10 +94,16 @@ public class RepositorioReparacion
     {
         Reparacion reparacion = null;
         using (var connection = new MySqlConnection(ConnectionString))
-        {      string sql = $@"SELECT i.{nameof(Reparacion.Id)}, i.{nameof(Reparacion.IdOrden)}, c.{nameof(Cliente.Nombre)}, c.{nameof(Cliente.Apellido)}, {nameof(Reparacion.FechaReparacion)}, {nameof(Reparacion.Detalle)},
-            {nameof(Reparacion.FechaEntrega)},{nameof(Reparacion.Pago)}
+        {      string sql = $@"SELECT 
+        i.{nameof(Reparacion.Id)},
+        i.{nameof(Reparacion.Codigo)}, 
+        c.{nameof(Cliente.Nombre)},
+        c.{nameof(Cliente.Apellido)}, 
+        i.{nameof(Reparacion.FechaReparacion)}, 
+        i.{nameof(Reparacion.Detalle)},
+        i.{nameof(Reparacion.FechaEntrega)}
                 FROM reparaciones i
-                INNER JOIN ordenesreparacion o ON i.{nameof(Reparacion.IdOrden)} = o.{nameof(OrdenReparacion.Id)}
+                INNER JOIN ordenesreparacion o ON i.{nameof(Reparacion.Codigo)} = o.{nameof(OrdenReparacion.CodigoReparacion)}
                 INNER JOIN clientes c ON o.{nameof(OrdenReparacion.IdCliente)} = c.{nameof(Cliente.Id)}
                 WHERE i.{nameof(Reparacion.Id)} = @id";
             using (var command = new MySqlCommand(sql, connection))
@@ -106,7 +117,7 @@ public class RepositorioReparacion
                         reparacion = new Reparacion
                         {
                             Id = reader.GetInt32(nameof(Reparacion.Id)),
-                            IdOrden = reader.GetInt32(nameof(Reparacion.IdOrden)),
+                            Codigo = reader.GetString(nameof(Reparacion.Codigo)),
 							
                             DatosOrden = new OrdenReparacion
                             {   
@@ -118,8 +129,7 @@ public class RepositorioReparacion
                             },
                             FechaReparacion = reader.GetDateTime(nameof(Reparacion.FechaReparacion)),
 						    Detalle = reader.GetString(nameof(Reparacion.Detalle)),
-                            FechaEntrega = reader.GetDateTime(nameof(Reparacion.FechaEntrega)),
-							Pago= reader.GetDouble(nameof(Reparacion.Pago)),
+                            FechaEntrega = reader.GetDateTime(nameof(Reparacion.FechaEntrega))
                           
                             
                         };
@@ -134,19 +144,17 @@ public class RepositorioReparacion
     public int ModificarReparacion(Reparacion reparacion){
         using (var connection = new MySqlConnection(ConnectionString)){
             string sql = $@"UPDATE reparaciones SET 
-                    {nameof(Reparacion.IdOrden)} = @{nameof(Reparacion.IdOrden)},
+                    {nameof(Reparacion.Codigo)} = @{nameof(Reparacion.Codigo)},
                     {nameof(Reparacion.FechaReparacion)} = @{nameof(Reparacion.FechaReparacion)},
                     {nameof(Reparacion.Detalle)} = @{nameof(Reparacion.Detalle)},
-                    {nameof(Reparacion.FechaEntrega)} = @{nameof(Reparacion.FechaEntrega)},
-                    {nameof(Reparacion.Pago)} = @{nameof(Reparacion.Pago)}
+                    {nameof(Reparacion.FechaEntrega)} = @{nameof(Reparacion.FechaEntrega)}
                 WHERE {nameof(Reparacion.Id)} = @{nameof(Reparacion.Id)}";           
             using (var command = new MySqlCommand(sql, connection)){
                 command.Parameters.AddWithValue($"@{nameof(Reparacion.Id)}", reparacion.Id);
-                command.Parameters.AddWithValue($"@{nameof(Reparacion.IdOrden)}", reparacion.IdOrden);
+                command.Parameters.AddWithValue($"@{nameof(Reparacion.Codigo)}", reparacion.Codigo);
                 command.Parameters.AddWithValue($"@{nameof(Reparacion.FechaReparacion)}", reparacion.FechaReparacion);
                 command.Parameters.AddWithValue($"@{nameof(Reparacion.Detalle)}", reparacion.Detalle);
                 command.Parameters.AddWithValue($"@{nameof(Reparacion.FechaEntrega)}", reparacion.FechaEntrega);
-                command.Parameters.AddWithValue($"@{nameof(Reparacion.Pago)}", reparacion.Pago);
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
@@ -170,15 +178,6 @@ public class RepositorioReparacion
         }
          return 0;
     }
-    public Boolean validarReparacion(Reparacion Reparacion){
-         var fechaActual = DateTime.Now;
-       
-        if(Reparacion.FechaReparacion<=fechaActual)  {
-            return true;
-        }else
-        return false;
-    }
-
-    
+   
 
 }
