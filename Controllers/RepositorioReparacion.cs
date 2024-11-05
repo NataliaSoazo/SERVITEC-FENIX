@@ -15,7 +15,7 @@ public class RepositorioReparacion
 
     public IList<Reparacion> ObtenerReparaciones()
     {
-        var reparacion = new List<Reparacion>();
+        var reparaciones = new List<Reparacion>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
             string sql = $@"SELECT 
@@ -39,7 +39,7 @@ public class RepositorioReparacion
                 {
                     while (reader.Read())
                     {
-                        reparacion.Add(new Reparacion
+                        reparaciones.Add(new Reparacion
                         {
                             Id = reader.GetInt32(nameof(Reparacion.Id)),
 							Codigo = reader.GetString(nameof(Reparacion.Codigo)),
@@ -61,7 +61,7 @@ public class RepositorioReparacion
                 }
             }
          }
-         return reparacion;
+         return reparaciones;
     }
 
 

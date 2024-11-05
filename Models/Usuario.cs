@@ -49,4 +49,16 @@ public class Log
 	public string Usuario { get; set; }
 	public string Clave { get; set; }
 }
-
+public class ResetearContrasenaViewModel
+{
+    public string Token { get; set; }
+    
+    [DataType(DataType.Password)]
+    [Display(Name = "Nueva Contraseña")]
+    public string NuevaClave { get; set; }
+    
+    [DataType(DataType.Password)]
+    [Display(Name = "Confirmar Nueva Contraseña")]
+    [Compare("NuevaClave", ErrorMessage = "Las contraseñas no coinciden.")]
+    public string ConfirmarClave { get; set; }
+}

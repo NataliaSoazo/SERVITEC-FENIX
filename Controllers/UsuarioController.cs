@@ -20,19 +20,23 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json.Serialization;
 using System.Net.WebSockets;
-
+using System;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 namespace SERVITEC_FENIX;
 
 public class UsuarioController : Controller
 {
+    
     private readonly IConfiguration configuration;
     private readonly IWebHostEnvironment environment;
 
     private readonly ILogger<HomeController> _logger;
 
-    public UsuarioController(ILogger<HomeController> logger, IConfiguration configuration, IWebHostEnvironment environment)
+    public UsuarioController( ILogger<HomeController> logger, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        _logger = logger;
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         this.configuration = configuration;
         this.environment = environment;
 
@@ -59,7 +63,7 @@ public class UsuarioController : Controller
         }
         catch (Exception ex)
         {
-            //_logger.LogError(ex, "Error al obtener la lista de usuarios");
+              _logger.LogError(ex, "Error al obtener la lista de pagos");
             TempData["Error"] = "Ocurrio un error al obtener la lista de usuarios";
             ViewBag.Error = TempData["Error"];
             return View(lista);
@@ -100,7 +104,7 @@ public class UsuarioController : Controller
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
-        {
+        {    _logger.LogError(ex, "Error");
             TempData["Mensaje"] = "Ocurrió un error al guardar el usuario";
             return RedirectToAction(nameof(Index));
         }
@@ -150,6 +154,7 @@ public class UsuarioController : Controller
         }
         catch (Exception ex)
         {
+               _logger.LogError(ex, "Error");
             TempData["Error"] = "Ocurrio un error al guardar el avatar";
         }
     }
@@ -202,6 +207,7 @@ public class UsuarioController : Controller
         }
         catch (Exception ex)
         {
+               _logger.LogError(ex, "Error");
             TempData["Error"] = "Ocurrio un error al obtener los datos del usuario";
             return RedirectToAction(nameof(Index));
         }
@@ -254,6 +260,7 @@ public class UsuarioController : Controller
         }
         catch (Exception ex)
         {
+               _logger.LogError(ex, "Error");
             TempData["Error"] = "Ocurrio un error al actualizar los datos del usuario";
             return RedirectToAction(nameof(Index));
         }
@@ -285,6 +292,7 @@ public class UsuarioController : Controller
         }
         catch (Exception ex)
         {
+             _logger.LogError(ex, "Error");
             TempData["Error"] = "Ocurrio un error al actualizar los datos del usuario";
             return RedirectToAction(nameof(Index));
         }
@@ -301,6 +309,7 @@ public class UsuarioController : Controller
         }
         catch (Exception ex)
         {
+             _logger.LogError(ex, "Error");
             TempData["Mensaje"] = "Ocurrio un error al eliminar el usuario";
             return RedirectToAction(nameof(Index));
         }
@@ -444,4 +453,63 @@ public class UsuarioController : Controller
         }
     }
 
+    [HttpPost]
+    public async Task<IActionResult> SolicitarRecuperacion(string correo)
+    {
+       
+      //  if (usuario == null)
+        {
+            return NotFound("El correo no está registrado.");
+        }
+
+        // Generar un token único
+        var token = Guid.NewGuid().ToString();
+
+        // Guardar el token y su fecha de expiración (puedes crear una tabla si es necesario)
+        // Aquí puedes implementar la lógica para almacenar el token en la base de datos
+
+        // Enviar el correo electrónico
+        var link = Url.Action("ResetearContrasena", "Usuario", new { token }, Request.Scheme);
+        await EnviarCorreo(correo, link);
+
+        return Ok("Se ha enviado un enlace para la recuperación de contraseña.");
+    }
+
+    private async Task EnviarCorreo(string correo, string link)
+    {
+        var mensaje = new MailMessage();
+        mensaje.To.Add(correo);
+        mensaje.Subject = "Recuperación de Contraseña";
+        mensaje.Body = $"Por favor, haga clic en el siguiente enlace para restablecer su contraseña: {link}";
+        mensaje.IsBodyHtml = true;
+
+        using (var cliente = new SmtpClient("smtp.tuemail.com"))
+        {
+            cliente.Port = 587; // o el puerto que uses
+            cliente.Credentials = new NetworkCredential("tuemail@dominio.com", "tucontraseña");
+            cliente.EnableSsl = true;
+
+            await cliente.SendMailAsync(mensaje);
+        }
+    }
+
+    [HttpGet]
+    public IActionResult ResetearContrasena(string token)
+    {
+        // Mostrar vista para que el usuario ingrese una nueva contraseña
+        return View(new ResetearContrasenaViewModel { Token = token });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ResetearContrasena(ResetearContrasenaViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            // Verificar el token y restablecer la contraseña
+           
+          
+        }
+        return View(model);
+    }
 }
+

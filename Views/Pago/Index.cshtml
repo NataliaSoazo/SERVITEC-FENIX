@@ -5,11 +5,11 @@
 <div class="col-6" style="background-color: rgb(167, 201, 245);">
     <form method="get" asp-action="Index" class="row g-3>
         <div class="form-row m-2" >
-            <div class="form-group col-md- m-2" >
+            <div class="form-group col-md-4 m-2" >
                 <label for="fechaInicio">Fecha Inicio</label>
                 <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" />
             </div>
-            <div class="form-group col-md- m-2">
+            <div class="form-group col-md-4 m-2">
                 <label for="fechaFin">Fecha Fin</label>
                 <input type="date" class="form-control" id="fechaFin" name="fechaFin" />
             </div>
@@ -24,79 +24,79 @@
             }
     </div>   
 </div>
+<div class="container justify-content-center  col-11 ">
+            <h4> Listado de pagos</h4>
 
-<h4> Listado de pagos</h4>
-
-<p>
-    <a asp-action="Editar" method="post">CREAR NUEVO </a>
-</p>
+            <p>
+                <a asp-action="Editar" method="post">CREAR NUEVO </a>
+            </p>
 
 
-<table id="miTabla" class="table table-striped table-bordered col-11">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Reparacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Modo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Importe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Anulado)
-            </th>
+         <table id="miTabla" class="table table-striped table-bordered col-11">
+             <thead>
+                 <tr>
+                     <th>
+                         @Html.DisplayNameFor(model => model.Id)
+                     </th>
+                     <th>
+                         @Html.DisplayNameFor(model => model.Reparacion)
+                     </th>
+                     <th>
+                         @Html.DisplayNameFor(model => model.Fecha)
+                     </th>
+                     <th>
+                         @Html.DisplayNameFor(model => model.Modo)
+                     </th>
+                     <th>
+                         @Html.DisplayNameFor(model => model.Importe)
+                     </th>
+                     <th>
+                         @Html.DisplayNameFor(model => model.Anulado)
+                     </th>
 
-            <th>
-                ACCIONES
-            </th>
+                     <th>
+                         ACCIONES
+                     </th>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <th>
-                    @Html.DisplayFor(model => item.Id)
-                </th>
-                <th>
-                    @Html.DisplayFor(model => item.Reparacion)
-                </th>
-                <th>
-                    @Html.DisplayFor(model => item.Fecha)
-                </th>
-                <th>
-                    @Html.DisplayFor(model => item.Modo)
-                </th>
-                <th>
-                    @Html.DisplayFor(model => item.Importe)
-                </th>
-                <th>
-                    @Html.DisplayFor(model => item.Anulado)
-                </th>
+                 </tr>
+             </thead>
+             <tbody>
+                 @foreach (var item in Model)
+                 {
+                     <tr>
+                         <th>
+                             @Html.DisplayFor(model => item.Id)
+                         </th>
+                         <th>
+                             @Html.DisplayFor(model => item.Reparacion)
+                         </th>
+                         <th>
+                             @Html.DisplayFor(model => item.Fecha)
+                         </th>
+                         <th>
+                             @Html.DisplayFor(model => item.Modo)
+                         </th>
+                         <th>
+                             @Html.DisplayFor(model => item.Importe)
+                         </th>
+                         <th>
+                             @Html.DisplayFor(model => item.Anulado)
+                         </th>
 
-                <td>
-                    <a asp-action="Detalles" asp-route-id=@item.Id title="Ver Detalle"><i class="fa fa-eye "
-                            style="font-size:25px;" id="detalles"></i></a>
-                    <a asp-action="Editar" asp-route-id=@item.Id title="Editar"><i class="fa fa-pencil "
-                            style="font-size:25px;" id="edi"></i></a>
-                    <a href="#" onclick="eliminar('@item.Id')"><i class="fa fa-trash " title="anular"
-                            style="font-size:25px;" id="eli"></i></a>
+                         <td>
+                             <a asp-action="Detalles" asp-route-id=@item.Id title="Ver Detalle"><i class="fa fa-eye "
+                                     style="font-size:25px;" id="detalles"></i></a>
+                             <a asp-action="Editar" asp-route-id=@item.Id title="Editar"><i class="fa fa-pencil "
+                                     style="font-size:25px;" id="edi"></i></a>
+                             <a href="#" onclick="eliminar('@item.Id')"><i class="fa fa-trash " title="anular"
+                                     style="font-size:25px;" id="eli"></i></a>
 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+                         </td>
+                     </tr>
+                 }
+             </tbody>
+         </table>
+</div>
 <form class="modal" tabindex="-1" asp-action="Eliminar" id="modal_eliminar_Pago">
     <div class="modal-dialog">
         <div class="modal-content">

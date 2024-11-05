@@ -17,7 +17,7 @@ public class RepositorioPago
         using (var connection = new MySqlConnection(ConnectionString))
         {
             string sql = $@"SELECT p.{nameof(Pago.Id)},{nameof(Pago.Reparacion)}, {nameof(Pago.Fecha)}, {nameof(Pago.Modo)}, {nameof(Pago.Importe)}, {nameof(Pago.Anulado)}
-                FROM pagos p  ORDER BY p.{nameof(Pago.Fecha)} DESC";
+                FROM pagos p WHERE P.{nameof(Pago.Anulado)} = 'NO' ORDER BY p.{nameof(Pago.Fecha)} DESC";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -102,9 +102,9 @@ public class RepositorioPago
         Pago? pagos = null;
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            string sql = $@"SELECT p.{nameof(Pago.Id)},{nameof(Pago.Fecha)}, {nameof(Pago.Modo)}, {nameof(Pago.Importe)}, {nameof(Pago.Anulado)}, {nameof(Pago.Reparacion)}
-                FROM pagos p
-                WHERE p.{nameof(Pago.Id)} = @{nameof(Pago.Id)};";
+            string sql = $@"SELECT {nameof(Pago.Id)},{nameof(Pago.Fecha)}, {nameof(Pago.Modo)}, {nameof(Pago.Importe)}, {nameof(Pago.Anulado)}, {nameof(Pago.Reparacion)}
+                FROM pagos
+                WHERE {nameof(Pago.Id)} = @{nameof(Pago.Id)};";
             using (var command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.AddWithValue($"@{nameof(Pago.Id)}", id);

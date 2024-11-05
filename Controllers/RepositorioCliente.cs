@@ -16,7 +16,9 @@ public class RepositorioCliente
         var clientes = new List<Cliente>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = @$"SELECT {nameof(Cliente.Id)}, {nameof(Cliente.Nombre)}, {nameof(Cliente.Apellido)}, {nameof(Cliente.Domicilio)}, {nameof(Cliente.Ciudad)}, {nameof(Cliente.Telefono)}, {nameof(Cliente.Correo)}, {nameof(Cliente.Latitud)}, {nameof(Cliente.Longitud)} FROM clientes";
+            var sql = @$"SELECT {nameof(Cliente.Id)}, {nameof(Cliente.Nombre)}, {nameof(Cliente.Apellido)}, {nameof(Cliente.Domicilio)},
+             {nameof(Cliente.Ciudad)}, {nameof(Cliente.Telefono)}, {nameof(Cliente.Correo)}, 
+             {nameof(Cliente.Latitud)}, {nameof(Cliente.Longitud)} FROM clientes ORDER BY {nameof(Cliente.Apellido)} DESC";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -115,6 +117,7 @@ public class RepositorioCliente
             {nameof(Cliente.Apellido)} = @{nameof(Cliente.Apellido)},
             {nameof(Cliente.Domicilio)} = @{nameof(Cliente.Domicilio)},
             {nameof(Cliente.Ciudad)} = @{nameof(Cliente.Ciudad)},
+            {nameof(Cliente.Telefono)} = @{nameof(Cliente.Telefono)},
             {nameof(Cliente.Correo)} = @{nameof(Cliente.Correo)},
             {nameof(Cliente.Latitud)} = @{nameof(Cliente.Latitud)},
             {nameof(Cliente.Longitud)} = @{nameof(Cliente.Longitud)}

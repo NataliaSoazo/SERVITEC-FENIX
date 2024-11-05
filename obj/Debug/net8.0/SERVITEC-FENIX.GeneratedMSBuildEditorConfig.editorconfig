@@ -62,6 +62,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Gasto/Detalles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FzdG9cRGV0YWxsZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Gasto/editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FzdG9cZWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Gasto/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FzdG9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -156,6 +168,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Usuario/Loguin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xMb2d1aW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/Usuario/ResetearContrasena.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xSZXNldGVhckNvbnRyYXNlbmEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Natalia/Documents/ENTORNO .NET/SERVITEC-FENIX/Views/_ViewImports.cshtml]

@@ -16,7 +16,7 @@ public class RepositorioAparato
         var Aparatos = new List<Aparato>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = @$"SELECT {nameof(Aparato.Id)}, {nameof(Aparato.NombreA)} FROM Aparatos";
+            var sql = @$"SELECT {nameof(Aparato.Id)}, {nameof(Aparato.NombreA)} FROM Aparatos ORDER BY {nameof(Aparato.NombreA)} DESC";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();

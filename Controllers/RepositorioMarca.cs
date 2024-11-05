@@ -16,7 +16,7 @@ public class RepositorioMarca
         var marcas = new List<Marca>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = @$"SELECT {nameof(Marca.Id)}, {nameof(Marca.NombreM)} FROM Marcas";
+            var sql = @$"SELECT {nameof(Marca.Id)}, {nameof(Marca.NombreM)} FROM Marcas ORDER BY {nameof(Marca.NombreM)} DESC";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();

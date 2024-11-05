@@ -6,27 +6,28 @@ namespace SERVITEC_FENIX{
      public class OrdenReparacion{
         [Display(Name = "IDENTIFICADOR")]
         public int Id { get; set; }
-        [Display(Name = "CÓDIGO DE REPARACIÓN")]
+         [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "CÓD DE REPARACIÓN")]
         public string CodigoReparacion { get; set; }
-        [Required]
+         [Required(ErrorMessage = "Campo obligatorio")]
         [DataType(DataType.Date)]
         [Display(Name = "FECHA DE INGRESO")]
         public DateTime FechaRecepcion { get; set; }
         [Display(Name = "CLIENTE O CODIGO DE CLIENTE")]
-        [Required]
+         [Required(ErrorMessage = "Campo obligatorio")]
         [ForeignKey(nameof(IdCliente))]
         public int IdCliente { get; set; }
         public Cliente DatosCliente { get; set; }
 
 
-        [Display(Name = "APARATO O CODIGO APARATO")]
-        [Required]
+        [Display(Name = "CODIGO APARATO")]
+         [Required(ErrorMessage = "Campo obligatorio")]
         [ForeignKey(nameof(IdAparato))]
         public int IdAparato { get; set; }
         public Aparato DatosAparato { get; set; }
 
 
-        [Display(Name = "MARCA O CODIGO DE MARCA")]
+        [Display(Name = "MARCA")]
         [Required]
         [ForeignKey(nameof(IdMarca))]
         public int IdMarca { get; set; }
@@ -35,7 +36,7 @@ namespace SERVITEC_FENIX{
          [Display(Name = " FALLA")]
         public string Falla { get; set; }
         [Required]
-        [Display(Name = "NÚMERO DE SERIE")]
+        [Display(Name = "NRO DE SERIE")]
         public string NroSerie { get; set; }
         [Display(Name = "VALOR PRESUPUESTADO ")]
         public double Valor { get; set; }

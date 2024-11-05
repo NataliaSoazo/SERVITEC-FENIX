@@ -1,0 +1,19 @@
+@model ResetearContrasenaViewModel
+
+<form asp-action="ResetearContrasena" method="post">
+    <input type="hidden" asp-for="Token" />
+
+    <div class="mb-3">
+        <label for="NuevaClave" class="form-label">Nueva Contraseña</label>
+        <input type="password" class="form-control" id="NuevaClave" asp-for="NuevaClave" placeholder="Ingresa tu nueva contraseña" required />
+        <div class="form-text">Asegúrate de que la contraseña sea segura.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="ConfirmarClave" class="form-label">Confirmar Contraseña</label>
+        <input type="password" class="form-control" id="ConfirmarClave" asp-for="ConfirmarClave" placeholder="Confirma tu nueva contraseña" required />
+        <div class="form-text">La contraseña debe coincidir con la anterior.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Restablecer Contraseña</button>
+</form>

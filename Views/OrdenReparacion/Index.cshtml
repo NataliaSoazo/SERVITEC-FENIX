@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Index";
+   
 
 }
  <div class="btn"><a class="py-2 d-none d-md-inline-block" asp-controller="Cliente"
@@ -15,7 +16,7 @@
     <h4> Listado de órdenes de reparación</h4>
 
 <p>
-     <a href="#"onclick="crearOrdenReparacion()" ><i class="fa fa-plus " title="crear Reparacion" style="font-size:25px";></i></a>
+     <a href="#"onclick="crearOrdenReparacion()" ><i class="fa fa-plus " title="CREAR NUEVA ORDEN DE REPARACION" style="font-size:25px";></i></a>
 </p>
 <div >
     <table id="miTabla" class="table table-striped table-bordered">
@@ -28,6 +29,9 @@
              <th >
                 @Html.DisplayNameFor(model => model.CodigoReparacion)
             </th>
+              <th>
+                @Html.DisplayNameFor(model => model.NroSerie)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaRecepcion)
             </th>
@@ -37,10 +41,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.DatosCliente.Nombre)
             </th>
-             <th>
-                @Html.DisplayNameFor(model => model.Falla)
-            </th>
-             
              <th>
                ACCIONES
             </th>
@@ -60,6 +60,9 @@
                     @Html.DisplayFor(modelItem => item.CodigoReparacion)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.NroSerie)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.FechaRecepcion)
                 </td>
                 <td>
@@ -68,10 +71,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DatosCliente.Nombre)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Falla)
-                </td>
-               
+                
                 <td>
                     <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary" style="font-size:25px;"></i></a>
                     <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-warning" style="font-size:25px;"></i></a>
@@ -102,128 +102,6 @@
   </div>
 </div>
 </form>
-<-- formulario para crear--!>
-<form class="modal" tabindex="-1" asp-action="Guardar" id="crearOrdenReparacion">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Crear Orden de Reparación</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group col-12">
-            <label for="selectClientes">Cliente</label>
-            <select class="form-control" name="IdCliente" id="selectClientes">
-                @foreach (var cliente in ViewBag.Clientes)
-                {
-                    <option value="@cliente.Id">@cliente.Apellido @cliente.Nombre</option>
-                }
-            </select>
-        </div>
-
-        <div class="form-group col-12">
-            <label for="selectAparatos">Aparato</label>
-            <select class="form-control" name="IdAparato" id="selectAparatos">
-                @foreach (var aparato in ViewBag.Aparatos)
-                {
-                    <option value="@aparato.Id">@aparato.NombreA</option>
-                }
-            </select>
-        </div>
-
-        <div class="form-group col-12">
-            <label for="selectMarca">Marca</label>
-            <select class="form-control" name="IdMarca" id="selectMarca">
-                @foreach (var marca in ViewBag.Marcas)
-                {
-                    <option value="@marca.Id">@marca.NombreM</option>
-                }
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="falla">Falla</label>
-            <input name="Falla" class="form-control" type="textarea"/>
-        </div>
-
-        <div class="form-group col-6">
-            <label for="nroSerie">Nro Serie</label>
-            <input name="NroSerie" class="form-control" />
-        </div>
-
-        <div class="form-group col-6">
-            <label for="valor">Valor</label>
-            <input name="Valor" class="form-control" />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-      </div>
-    </div>
-  </div>
-</form>
-<-- formulario para crear orden de reparacion--!>
-<form class="modal" tabindex="-1" asp-action="Guardar" id="crearOrdenReparacion">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Crear Orden de Reparación</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group col-12">
-            <label for="selectClientes">Cliente</label>
-            <select class="form-control" name="IdCliente" id="selectClientes">
-                @foreach (var cliente in ViewBag.Clientes)
-                {
-                    <option value="@cliente.Id">@cliente.Apellido @cliente.Nombre</option>
-                }
-            </select>
-        </div>
-
-        <div class="form-group col-12">
-            <label for="selectAparatos">Aparato</label>
-            <select class="form-control" name="IdAparato" id="selectAparatos">
-                @foreach (var aparato in ViewBag.Aparatos)
-                {
-                    <option value="@aparato.Id">@aparato.NombreA</option>
-                }
-            </select>
-        </div>
-
-        <div class="form-group col-12">
-            <label for="selectMarca">Marca</label>
-            <select class="form-control" name="IdMarca" id="selectMarca">
-                @foreach (var marca in ViewBag.Marcas)
-                {
-                    <option value="@marca.Id">@marca.NombreM</option>
-                }
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="falla">Falla</label>
-            <textarea name="Falla" class="form-control" rows="3"></textarea>
-        </div>
-
-        <div class="form-group col-6">
-            <label for="nroSerie">Nro Serie</label>
-            <input name="NroSerie" class="form-control" />
-        </div>
-
-        <div class="form-group col-6">
-            <label for="valor">Valor</label>
-            <input name="Valor" class="form-control" />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-      </div>
-    </div>
-  </div>
-</form>
 <-- crear reparacion--!>
 <div class="modal fade" id="crearReparacion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -244,21 +122,21 @@
                     </div>
                     <div class="form-group col-6">
                         <label class="control-label">Fecha de Reparación</label>
-                        <input type="date" name="FechaReparacion" class="form-control" id="fechaReparacion"  />
+                        <input type="date" name="FechaReparacion" class="form-control" id="fechaReparacion" required />
                         <span class="text-danger">
                             <!-- Aquí podrías incluir la validación para FechaReparacion -->
                         </span>
                     </div>
                     <div class="form-group col-12">
                         <label class="control-label">Detalle</label>
-                        <input type="textBox" name="Detalle" class="form-control"  />
+                        <input type="textBox" name="Detalle" class="form-control" required  />
                         <span class="text-danger">
                             <!-- Aquí podrías incluir la validación para Detalle -->
                         </span>
                     </div>
                     <div class="form-group col-6">
                         <label class="control-label">Fecha de Entrega</label>
-                        <input type="date" name="FechaEntrega" id="fechaEntrega" class="form-control"  />
+                        <input type="date" name="FechaEntrega" id="fechaEntrega" class="form-control" required  />
                         <span class="text-danger">
                             <!-- Aquí podrías incluir la validación para FechaEntrega -->
                         </span>
@@ -266,6 +144,76 @@
                     <div class="form-group">
                         <input type="submit" value="Guardar" class="btn btn-primary" />
                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<-- formulario para crear Orden de reparacion--!>
+<
+
+<div class="modal fade" id="crearOrdenReparacion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <input type="hidden" name="Id" value="0">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Agregar Reparación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Guardar"  class="row g-3">
+                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group col-6">
+                <label for="FechaRecepcion" class="control-label">FECHA DE RECEPCION</label>
+                <input name="FechaRecepcion " class="form-control" id="fechaRecepcion">
+                <span for="FechaRecepcion" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group col-6">
+                    <label for="IdCliente" class="control-label">CLIENTE</label>
+                    <select class="form-control"  name="IdCliente" id="selectClientes" >
+                        @foreach (var item in (IList<Cliente>)ViewBag.Clientes)
+                        {
+                            @:<option  value="@item.Id">@item.Apellido @item.Nombre </option>
+                        }
+                    </select>
+            </div>
+            <div class="form-group  col-6">
+                <label for="IdAparato" class="control-label">APARATO</label>
+                <select class="form-control"  name="IdAparato" id="selectAparatos"  >
+                    @foreach (var item in (IList<Aparato>)ViewBag.Aparatos)
+                    {
+                        @:<option value="@item.Id">@item.NombreA </option>
+                    }
+                </select>
+            </div>
+             <div class="form-group  col-6">
+                <label for="IdMarca" class="control-label">MARCA</label>
+                <select class="form-control"  name="IdMarca" id="selectMarca">
+                    @foreach (var item in (IList<Marca>)ViewBag.Marcas)
+                    {
+                        @:<option value="@item.Id">@item.NombreM </option>
+                    }
+                </select>
+            </div>
+             <div class="form-group">
+                <label for="Falla" class="control-label">FALLA</label>
+                 <textarea class="form-control" rows="3" name="Falla" required></textarea>
+                <span for="Falla" class="text-danger"></span>
+            </div>
+            <div class="form-group col-6">
+                <label for="NroSerie" class="control-label">NRO DE SERIE</label>
+                <input name="NroSerie" class="form-control" required/>
+                <span for="NroSerie" class="text-danger"></span>
+            <div class="form-group col-6">
+                <label for="Valor" class="control-label">VALOR PRESUPUESTADO</label>
+                <input name="Valor" class="form-control" required />
+                <span for="Valor" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
                 </form>
             </div>
         </div>
@@ -303,6 +251,6 @@
     // Establecer la fecha en el campo de entrada
     document.getElementById('fechaReparacion').value = fechaFormateada;
     document.getElementById('fechaEntrega').value = fechaFormateada;
-    
+    document.getElementById('fechaRecepcion').value = fechaFormateada;
 </script>
 }

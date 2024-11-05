@@ -11,7 +11,7 @@ namespace SERVITEC_FENIX.Controllers;
 public class OrdenReparacionController : Controller
 {
     RepositorioOrdenReparacion rr = new RepositorioOrdenReparacion();
-     private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<HomeController> _logger;
 
     public OrdenReparacionController(ILogger<HomeController> logger)
     {
@@ -20,17 +20,20 @@ public class OrdenReparacionController : Controller
 
     public IActionResult Index()
 
-    {    
+    {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == "Rol")?.Value;
+        ViewBag.UserRole = userRole;
+        RepositorioCliente repoCliente = new RepositorioCliente();
+        RepositorioAparato repoAparato = new RepositorioAparato();
+        RepositorioMarca repoMarca = new RepositorioMarca();
+        try
+        {
 
-          RepositorioCliente repoCliente = new RepositorioCliente();
             ViewBag.Clientes = repoCliente.ObtenerClientes();
-            RepositorioAparato repoAparato = new RepositorioAparato();
             ViewBag.Aparatos = repoAparato.ObtenerAparatos();
-            RepositorioMarca repoMarca = new RepositorioMarca();
             ViewBag.Marcas = repoMarca.ObtenerMarcas();
-
-        var lista = rr.ObtenerOrdenReparaciones();
-        if (TempData.ContainsKey("Mensaje"))
+            var lista = rr.ObtenerOrdenReparaciones();
+            if (TempData.ContainsKey("Mensaje"))
             {
                 ViewBag.Mensaje = TempData["Mensaje"];
             }
@@ -39,14 +42,22 @@ public class OrdenReparacionController : Controller
                 ViewBag.Error = TempData["Error"];
             }
 
-        return View(lista);
+            return View(lista);
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "Error");
+            TempData["Error"] = "Ocurrio un error ";
+            throw;
+        }
+
     }
 
     public IActionResult Editar(int id)
     {
         try
-        {   
-   
+        {
+
             RepositorioCliente repoCliente = new RepositorioCliente();
             ViewBag.Clientes = repoCliente.ObtenerClientes();
             RepositorioAparato repoAparato = new RepositorioAparato();
@@ -60,15 +71,14 @@ public class OrdenReparacionController : Controller
                 return View(ordenReparacion);
             }
             else
-            {   
-                //var currentDateTime = DateTime.Now.ToString("yyyy-MM-dd");
-                //ViewBag.CurrentDateTime = currentDateTime;
+            {
                 return View();
             }
         }
         catch (Exception ex)
         {
-            TempData["Mensaje"] = "No se pudo  realizar la acción. ";
+            _logger.LogError(ex, "Error");
+            TempData["Error"] = "No se pudo  realizar la acción. ";
             return View();
         }
     }
@@ -77,52 +87,75 @@ public class OrdenReparacionController : Controller
 
 
     public ActionResult Guardar(OrdenReparacion ordenReparacion)
-    {   
+    {
         ordenReparacion.Falla = ordenReparacion.Falla.ToUpper();
         ordenReparacion.NroSerie = ordenReparacion.NroSerie.ToUpper();
         Boolean validado = rr.validarOrdenReparacion(ordenReparacion);
-       
-        
+        try
+        {
             if (validado == true)
             {
 
                 if (ordenReparacion.Id > 0)
                 {
                     rr.ModificarOrdenReparacion(ordenReparacion);
+                    TempData["Mensaje"] = "Modificación exitosa.";
                     return RedirectToAction(nameof(Index));
 
                 }
-                else 
-                    ordenReparacion.CodigoReparacion = ordenReparacion.FechaRecepcion.Year + "-"+ ordenReparacion.FechaRecepcion.Month + "-";
-                    rr.AltaOrdenReparacion(ordenReparacion);
-                    return RedirectToAction(nameof(Index));
-                 
-            }else  ViewBag.Error = "La orden debe pertenecer al año en curso";
-                return View("Error");
-    
+                else{
+                    ordenReparacion.CodigoReparacion = ordenReparacion.FechaRecepcion.Year + "-" + ordenReparacion.FechaRecepcion.Month + "-";
+               
+                rr.AltaOrdenReparacion(ordenReparacion);
+                TempData["Mensaje"] = "Alta exitosa.";
+                return RedirectToAction(nameof(Index));
+                }
 
-    }
-
-
-
-public IActionResult Eliminar(int id)
-    {   try{
-        rr.EliminarOrdenReparacion(id);
-        return RedirectToAction(nameof(Index));
-    }  catch (Exception ex)
-            {//poner breakpoints para detectar errores
-                throw;
             }
+            else ViewBag.Error = "La orden debe pertenecer al año en curso";
+            return View("Error");
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex, "Error");
+            TempData["Error"] = "No se pudo  realizar la acción. ";
+            return View();
+        }
+
 
     }
 
-    public IActionResult Detalles( int id)
-    {   try{
+
+
+    public IActionResult Eliminar(int id)
+    {
+        try
+        {
+            rr.EliminarOrdenReparacion(id);
+            TempData["Mensaje"] = "Eliminación Exitosa. ";
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception ex)
+        {//poner breakpoints para detectar errores
+            _logger.LogError(ex, "Error");
+            TempData["Error"] = "No se pudo  realizar la acción. ";
+            return View();
+        }
+
+    }
+
+    public IActionResult Detalles(int id)
+    {
+        try
+        {
             var c = rr.ObtenerOrdenReparacion(id);
-            return View(c); 
-    }  catch (Exception ex)
-            {//poner breakpoints para detectar errores
-                throw;
-            }
-    }   
+            return View(c);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error");
+            TempData["Error"] = "No se pudo  realizar la acción. ";
+            return View();
+        }
+    }
 }

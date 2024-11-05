@@ -1,4 +1,4 @@
-@model SERVITEC_FENIX.Models.Pago;
+@model SERVITEC_FENIX.Models.Gasto;
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 
 
 <div class="container justify-content-center  col-6"  id ="table">
-    <h4 class="text-center">Detalles del Pago</h4>
+    <h4 class="text-center">Detalles del gasto</h4>
     <hr />
      <dl class="row ">
         <dt class = "col-6 " >
@@ -41,10 +41,10 @@
             @Html.DisplayFor(model => model.Anulado)
         </dd>
         <dt class = "col-6 ">
-            @Html.DisplayNameFor(model => model.Reparacion)
+            @Html.DisplayNameFor(model => model.NombreGasto)
         </dt>
         <dd class = "col-6 ">
-            @Html.DisplayFor(model => model.Reparacion)
+            @Html.DisplayFor(model => model.NombreGasto)
         </dd>
             @if ( Model.Anulado == "SI")
             {

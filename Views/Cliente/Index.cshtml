@@ -8,7 +8,7 @@
 <h4> Lista de clientes</h4>
 
 <p>
-    <a asp-action="Editar"method = "post">CREAR NUEVO CLIENTE</a>
+    <a asp-action="Editar" id ="crear" method = "post"></a><i class="fa fa-plus " title="CREAR NUEVO CLIENTE" style="font-size:25px";></i></a>
 </p>
 <table id="miTabla" class="table table-striped table-bordered" >
     <thead> 
@@ -46,11 +46,9 @@
                 
                
                 <td>
-                    <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary" style="font-size:25px;"></i></a>
-                    <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-success" style="font-size:25px;"></i></a>
-                    <a href="#"onclick="eliminar('@item.Id', '@item.Nombre', '@item.Apellido')" ><i class="fa fa-trash " title="eliminar" style="font-size:25px;"id="eli"></i></a>
-                  
-                  
+                    <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary"title="VER DETALLES" style="font-size:25px;" id="detalles"></i></a>
+                    <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-success" title="EDITAR" style="font-size:25px;" id="edi"></i></a>
+                    <a href="#"onclick="eliminar('@item.Id', '@item.Nombre', '@item.Apellido')" ><i class="fa fa-trash " title="ELIMINAR" style="font-size:25px;"id="eli"></i></a>
                 </td>
             </tr>
         }

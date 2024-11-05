@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SERVITEC-FENIX")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eaa0f52d84a3e148c464c3b2ce25c844ccdc9e9c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f155bbfdd8a88ca9b85deada76b7cb2be17e380f")]
 [assembly: System.Reflection.AssemblyProductAttribute("SERVITEC-FENIX")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SERVITEC-FENIX")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -9,12 +9,15 @@ namespace SERVITEC_FENIX{
         [Display(Name = "O. REPARACION")]
         public string Codigo { get; set; }
         public OrdenReparacion DatosOrden { get; set; }
+        [Required]
         [DataType(DataType.Date)]
         [Display(Name = "FECHA DE REPARACION")]
         public DateTime FechaReparacion { get; set; }
+         [Required]
         [Display(Name = " DETALLE DE REPARACION")]
         public string? Detalle { get; set; }
          [DataType(DataType.Date)]
+         [Required]
         [Display(Name = "FECHA DE ENTREGA")]
         public DateTime? FechaEntrega { get; set; }
        

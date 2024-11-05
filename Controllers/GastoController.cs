@@ -6,11 +6,11 @@ using SERVITEC_FENIX.Models;
 
 namespace SERVITEC_FENIX.Controllers;
 
-public class PagoController : Controller
+public class GastoController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public PagoController(ILogger<HomeController> logger)
+    public GastoController(ILogger<HomeController> logger)
     {
         _logger = logger;
     }
@@ -18,13 +18,13 @@ public class PagoController : Controller
     public IActionResult Index()
     {
 
-        RepositorioPago rp = new RepositorioPago();
-        IList<Pago> lista = new List<Pago>();
+        RepositorioGasto rp = new RepositorioGasto();
+        IList<Gasto> lista = new List<Gasto>();
         var userRole = User.Claims.FirstOrDefault(c => c.Type == "Rol")?.Value;
         ViewBag.UserRole = userRole;
         try
         {
-            lista = rp.GetPagos();
+            lista = rp.GetGastos();
 
             if (TempData.ContainsKey("Mensaje"))
             {
@@ -44,12 +44,12 @@ public class PagoController : Controller
             return View(lista);
         }
     }
-    [HttpGet("index/filtrar")]
+    [HttpGet("index/buscar")]
      [Authorize]
     public IActionResult Index(DateTime? fechaInicio, DateTime? fechaFin)
     {
-        RepositorioPago rp = new RepositorioPago();
-        IList<Pago> lista = rp.GetPagos(); // Obtiene todos los pagos
+        RepositorioGasto rp = new RepositorioGasto();
+        IList<Gasto> lista = rp.GetGastos(); // Obtiene todos los pagos
         var userRole = User.Claims.FirstOrDefault(c => c.Type == "Rol")?.Value;
         ViewBag.UserRole = userRole;
 
@@ -106,15 +106,15 @@ public class PagoController : Controller
             ViewBag.Modo = Referencia;
             RepositorioReparacion repo = new RepositorioReparacion();
             ViewBag.Reparaciones = repo.ObtenerReparaciones();
-            var pago = new Pago();
+            var gasto = new Gasto();
 
             if (id.HasValue && id.Value > 0)
             {
-                RepositorioPago rp = new RepositorioPago();
-                pago = rp.GetPago(id.Value) ?? new Pago();
+                RepositorioGasto rp = new RepositorioGasto();
+                gasto = rp.GetGasto(id.Value) ?? new Gasto();
             }
 
-            return View(pago);
+            return View(gasto);
         }
         catch (System.Exception ex)
         {
@@ -127,21 +127,21 @@ public class PagoController : Controller
 
 
     //[Authorize]
-    public IActionResult Guardar(Pago pago)
+    public IActionResult Guardar(Gasto gasto)
     {
         try
         {
-            RepositorioPago rp = new RepositorioPago();
+            RepositorioGasto rp = new RepositorioGasto();
 
-            if (pago.Id > 0)
+            if (gasto.Id > 0)
             {
-                rp.ModificarPago(pago);
+                rp.ModificarPago(gasto);
                  TempData["Mensaje"] = "Modificación exitosa.";
                 return RedirectToAction(nameof(Index));
             }
             else
             {
-                rp.AltaPago(pago);
+                rp.AltaGasto(gasto);
                  TempData["Mensaje"] = "Alta exitosa.";
                 return RedirectToAction(nameof(Index));
             }
@@ -159,11 +159,11 @@ public class PagoController : Controller
     {
         try
         {
-            RepositorioPago rp = new RepositorioPago();
+            RepositorioGasto rp = new RepositorioGasto();
             RepositorioUsuario ru = new RepositorioUsuario();
             var usuario = ru.ObtenerPorEmail(User.Identity.Name);
             rp.EliminarPago(id);
-            TempData["Mensaje"] = "El pago ha sido anulado correctamente.";
+            TempData["Mensaje"] = "El Gasto ha sido anulado correctamente.";
             return RedirectToAction(nameof(Index));
         }
         catch (System.Exception ex)
@@ -178,11 +178,11 @@ public class PagoController : Controller
     {
         try
         {
-            RepositorioPago rp = new RepositorioPago();
+            RepositorioGasto rp = new RepositorioGasto();
             RepositorioUsuario ru = new RepositorioUsuario();
             var userRole = User.Claims.FirstOrDefault(c => c.Type == "Rol")?.Value;
             ViewBag.UserRole = userRole;
-            var p = rp.GetPago(id);
+            var p = rp.GetGasto(id);
             return View(p);
         }
         catch (System.Exception ex)
